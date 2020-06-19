@@ -23,6 +23,11 @@
         ],
         "default": "tsx",
         "x-prompt": "Which type do you want to write SSML?"
+      },
+      "requestType": {
+          "default": "IntentRequest",
+          "type": "string",
+          "description": "Request type from Alexa"
       }
     },
     "required": ["path", "name", "ssml"]

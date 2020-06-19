@@ -7,7 +7,8 @@ import {
 export function main(options: {
   name: string;
   path: string;
-  ssml: 'default' | 'tsx'
+  ssml: 'default' | 'tsx';
+  requestType: string;
 }): Rule {
   return () => {
     if (!options.name) {
@@ -16,6 +17,7 @@ export function main(options: {
     if (!options.path) {
       throw new SchematicsException('Option (path) is required.');
     }
+    if (!options.requestType) options.requestType = "IntentRequest"
     const path = `${options.path}/${strings.dasherize(options.name)}`;
 
 

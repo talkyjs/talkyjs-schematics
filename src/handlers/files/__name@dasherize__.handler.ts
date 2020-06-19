@@ -4,7 +4,7 @@ import { <%= classify(name)%>Script } from './<%= dasherize(name)%>.speech'
 <% } %>
 
 export const <%= classify(name)%>Handler: Router = {
-    requestType: 'IntentRequest',
+    requestType: "<%= requestType %>",
     intentName: "<%= classify(name)%>",
     handler: async (handlerInput) => {
         <% if (ssml === 'tsx') { %>
