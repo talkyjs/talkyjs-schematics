@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/schema",
-    "id": "SchematicsNestClass",
-    "title": "Nest Class Options Schema",
+    "id": "SchematicsTalkyJSHandler",
+    "title": "TalkyJS Handler Options Schema",
     "type": "object",
     "properties": {
       "name": {
@@ -13,7 +13,17 @@
         "type": "string",
         "description": "The path to create the class.",
         "x-prompt": "Where would you like to create for the class?"
+      },
+      "ssml": {
+        "description": "ssml syntax.",
+        "type": "string",
+        "enum": [
+          "default",
+          "tsx"
+        ],
+        "default": "tsx",
+        "x-prompt": "Which type do you want to write SSML?"
       }
     },
-    "required": ["path", "name"]
+    "required": ["path", "name", "ssml"]
   }

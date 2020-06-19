@@ -8,11 +8,12 @@
     "handler": {
       "description": "Request handler",
       "factory": "./handlers/handlers.factory#main",
-      "schema": "./handlers/schema.json"
+      "schema": "./handler/schema.json"
     },
     "setup": {
       "description": "Setup talkyjs with ask-utils",
-      "factory": "./setup/setup.factory#main"
+      "factory": "./setup/setup.factory#main",
+      "schema": "./setup/schema.json"
     }
   }
 }

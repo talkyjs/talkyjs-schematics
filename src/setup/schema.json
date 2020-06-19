@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "SchematicsTalkyJSSetup",
+    "title": "TalkyJS setup Options Schema",
+    "type": "object",
+    "properties": {
+      "ssml": {
+        "description": "ssml syntax.",
+        "type": "string",
+        "enum": [
+          "default",
+          "tsx"
+        ],
+        "default": "tsx",
+        "x-prompt": "Which type do you want to write SSML?"
+      }
+    },
+    "required": ["ssml"]
+  }
