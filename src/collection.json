@@ -8,6 +8,10 @@
     "handler": {
       "description": "Request handler",
       "factory": "./handlers/handlers.factory#main"
+    },
+    "setup": {
+      "description": "Setup talkyjs with ask-utils",
+      "factory": "./setup/setup.factory#main"
     }
   }
 }
