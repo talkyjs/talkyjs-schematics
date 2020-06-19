@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "SchematicsNestClass",
+    "title": "Nest Class Options Schema",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The name of the class.",
+        "x-prompt": "What name would you like to use for the class?"
+      },
+      "path": {
+        "type": "string",
+        "description": "The path to create the class.",
+        "x-prompt": "Where would you like to create for the class?"
+      }
+    },
+    "required": ["path", "name"]
+  }
