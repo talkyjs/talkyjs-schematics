@@ -4,6 +4,10 @@
     "schematics": {
       "description": "A blank schematic.",
       "factory": "./schematics/index#schematics"
+    },
+    "handler": {
+      "description": "Request handler",
+      "factory": "./handlers/handlers.factory#main"
     }
   }
 }
