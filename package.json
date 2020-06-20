@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A blank schematics",
   "scripts": {
-    "build": "tsc -p tsconfig.json && scripts/post-build.sh",
+    "build": "rimraf dist/* && tsc -p tsconfig.json && scripts/post-build.sh",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint 'src/**/*.ts'",
@@ -36,6 +36,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "jest": "^26.0.1",
     "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
     "ts-jest": "^26.1.0",
     "type-fest": "^0.15.1"
   },
