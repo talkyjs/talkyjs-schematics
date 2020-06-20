@@ -1,6 +1,6 @@
 {
   "name": "@talkyjs/schematics",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A blank schematics",
   "scripts": {
     "build": "rimraf dist/* && tsc -p tsconfig.json && scripts/post-build.sh",
