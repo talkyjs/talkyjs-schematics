@@ -2,3 +2,5 @@
 *.ts
 !*.d.ts
 tmp/
+src/
+scripts/

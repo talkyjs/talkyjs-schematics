@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "A blank schematics",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && scripts/post-build.sh",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "schematics": "npm run build && schematics"
   },
@@ -12,7 +12,10 @@
   ],
   "author": "",
   "license": "MIT",
-  "schematics": "./src/collection.json",
+  "schematics": "./dist/collection.json",
+  "files": [ 
+    "dist" 
+  ], 
   "dependencies": {
     "@angular-devkit/core": "^9.1.9",
     "@angular-devkit/schematics": "^9.1.9",
