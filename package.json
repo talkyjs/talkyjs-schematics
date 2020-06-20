@@ -4,7 +4,8 @@
   "description": "A blank schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json && scripts/post-build.sh",
-    "test": "npm run build && jasmine src/**/*_spec.js",
+    "test": "jest", 
+    "test:watch": "jest --watch",
     "schematics": "npm run build && schematics"
   },
   "keywords": [
@@ -13,9 +14,9 @@
   "author": "",
   "license": "MIT",
   "schematics": "./dist/collection.json",
-  "files": [ 
-    "dist" 
-  ], 
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@angular-devkit/core": "^9.1.9",
     "@angular-devkit/schematics": "^9.1.9",
@@ -23,9 +24,10 @@
   },
   "devDependencies": {
     "@angular-devkit/schematics-cli": "^0.901.9",
-    "@types/jasmine": "~3.5.0",
     "@types/node": "^12.11.1",
-    "jasmine": "^3.5.0",
+    "@types/jest": "^26.0.0",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0",
     "type-fest": "^0.15.1"
   }
 }
