@@ -13,7 +13,7 @@
   "keywords": [
     "schematics"
   ],
-  "author": "",
+  "author": "Hidetaka Okamoto",
   "license": "MIT",
   "schematics": "./dist/collection.json",
   "files": [
@@ -38,5 +38,8 @@
     "prettier": "^2.0.5",
     "ts-jest": "^26.1.0",
     "type-fest": "^0.15.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
