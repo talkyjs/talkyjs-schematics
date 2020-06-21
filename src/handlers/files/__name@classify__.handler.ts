@@ -1,14 +1,14 @@
 import { Router } from "@ask-utils/router";
 <% if (ssml === 'tsx') { %>
-import { <%= classify(name)%>Script } from './<%= dasherize(name)%>.speech'
+import { <%= name %>Script } from './<%= name%>.speech'
 <% } %>
 
-export const <%= classify(name)%>Handler: Router = {
+export const <%= name %>Handler: Router = {
     requestType: "<%= requestType %>",
-    intentName: "<%= classify(name)%>",
+    <% if (requestType === "IntentRequest") {%>intentName: "<%= name %>",<% } %>
     handler: async (handlerInput) => {
         <% if (ssml === 'tsx') { %>
-        const script = new <%= classify(name)%>Script(handlerInput)
+        const script = new <%= name %>Script(handlerInput)
         return script
             .createResponseBuilder()
             .getResponse();
@@ -18,4 +18,4 @@ export const <%= classify(name)%>Handler: Router = {
     }
 }
 
-export default <%= classify(name)%>Handler
+export default <%= name %>Handler

@@ -16,17 +16,18 @@ export function main(options: {
   name: string;
   path: string;
   ssml: 'default' | 'tsx';
-  requestType: string;
+  ["request-type"]: string;
 }): Rule {
   return () => {
     if (!options.name) {
       throw new SchematicsException('Option (name) is required.');
     }
+    options.name = strings.classify(options.name)
     if (!options.path) {
       throw new SchematicsException('Option (path) is required.');
     }
-    if (!options.requestType) options.requestType = 'IntentRequest';
-    const path = `${options.path}/${strings.dasherize(options.name)}`;
+    const requestType = options["request-type"] || 'IntentRequest';
+    const path = `${options.path}/${options.name}`;
 
     const templateSource = apply(url('./files'), [
       options.ssml === 'default'
@@ -35,6 +36,7 @@ export function main(options: {
       template({
         ...strings,
         ...options,
+        requestType,
       }),
       move(path),
     ]);

@@ -4,15 +4,21 @@
     "title": "TalkyJS Handler Options Schema",
     "type": "object",
     "properties": {
+      "request-type": {
+          "default": "IntentRequest",
+          "type": "string",
+          "description": "Request type from Alexa",
+          "x-prompt": "What type do you handle the request?"
+      },
       "name": {
         "type": "string",
-        "description": "The name of the class.",
+        "description": "The name of the intent name.",
         "x-prompt": "What name would you like to use for the class?"
       },
       "path": {
         "type": "string",
         "description": "The path to create the class.",
-        "x-prompt": "Where would you like to create for the class?"
+        "default": "./"
       },
       "ssml": {
         "description": "ssml syntax.",
@@ -23,12 +29,7 @@
         ],
         "default": "tsx",
         "x-prompt": "Which type do you want to write SSML?"
-      },
-      "requestType": {
-          "default": "IntentRequest",
-          "type": "string",
-          "description": "Request type from Alexa"
       }
     },
-    "required": ["path", "name", "ssml"]
+    "required": ["request-type",  "ssml"]
   }

@@ -4,7 +4,7 @@ import {
     SpeechScriptJSX,
 } from '@ask-utils/speech-script'
 
-export class <%= classify(name)%>Script extends SpeechScriptJSX {
+export class <%= name%>Script extends SpeechScriptJSX {
     speech() {
         return (
             <speak>
