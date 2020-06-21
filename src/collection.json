@@ -13,7 +13,7 @@
     },
     "setup": {
       "description": "Setup talkyjs with ask-utils",
-      "factory": "./setup/setup.factory#main",
+      "factory": "./setup/setup.factory#setup",
       "schema": "./setup/schema.json"
     },
     "init": {

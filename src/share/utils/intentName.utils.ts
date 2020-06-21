@@ -5,5 +5,5 @@
  * stripAmazonPrefix("AMAZON.HelpIntent") => "HelpIntent"
  */
 export const stripAmazonPrefix = (intentName: string): string => {
-    return intentName.replace(/AMAZON\./, '')
+    return intentName.replace(/AMAZON\./g, '')
 }

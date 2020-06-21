@@ -15,13 +15,13 @@ import {
 import { createRequestHandler } from '../handlers/handlers.factory';
 import { join } from 'path';
 import { createErrorHandler } from '../errorHandlers/handlers.factory';
+import { setup } from '../setup/setup.factory'
 
 /**
  * @TODO
  * - init npm
  * - install ask-sdk
  * - install ask-utils
- * - Stop / Cancel Intent
  * - test code
  */
 export type InitSkillOptions = {
@@ -57,6 +57,7 @@ export function main(options: InitSkillOptions): Rule {
   return () => {
     const handlerPath = join(options.path, 'src')
     return chain([
+        setup(options),
         initialzieSkill(options),
         createErrorHandler({
             path: handlerPath,
@@ -80,6 +81,12 @@ export function main(options: InitSkillOptions): Rule {
             ssml: options.ssml,
             "request-type": "SessionEndedRequest",
             name: "SessionEndedRequest"
+        }),
+        createRequestHandler({
+            path: handlerPath,
+            ssml: options.ssml,
+            "request-type": "IntentRequest",
+            name: ["AMAZON.StopIntent", "AMAZON.CancelIntent"]
         }),
     ])
   };

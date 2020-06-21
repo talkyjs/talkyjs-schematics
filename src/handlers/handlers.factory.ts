@@ -15,7 +15,7 @@ import { Request } from 'ask-sdk-model';
 import { stripAmazonPrefix } from '../share/utils/intentName.utils';
 
 export function createRequestHandler(options: {
-  name: string;
+  name: string | string[];
   path: string;
   ssml: 'default' | 'tsx';
   ["request-type"]: Request["type"];
@@ -24,9 +24,10 @@ export function createRequestHandler(options: {
     if (!options.name) {
       throw new SchematicsException('Option (name) is required.');
     }
-    options.name = strings.classify(options.name)
-    const intentName = options.name
-    const name = stripAmazonPrefix({...options}.name)
+    const intentName = Array.isArray(options.name) ? `[${options.name.map(name => `"${name}"`).join(',')}]`: `"${options.name}"`
+    const targetName = Array.isArray(options.name) ? options.name.join('And').replace(/IntentAnd/g, 'And') : options.name
+    options.name = strings.classify(targetName)
+    const name = stripAmazonPrefix(targetName)
     if (!options.path) {
       throw new SchematicsException('Option (path) is required.');
     }

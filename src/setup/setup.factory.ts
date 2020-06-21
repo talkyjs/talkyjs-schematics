@@ -9,7 +9,7 @@ import {
 import { TsConfigJson } from 'type-fest';
 import { addNodePackageDependenciesTask } from '../share/packages.factory';
 
-export function main({ ssml }: { ssml: 'default' | 'tsx' }): Rule {
+export function setup({ ssml }: { ssml: 'default' | 'tsx' }): Rule {
   return () => {
     return chain([
       updateTsConfig(ssml),

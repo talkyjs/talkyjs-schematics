@@ -5,7 +5,7 @@ import { <%= name %>Script } from './<%= name%>.speech'
 
 export const <%= name %>Handler: Router = {
     requestType: "<%= requestType %>",
-    <% if (requestType === "IntentRequest") {%>intentName: "<%= intentName %>",<% } %>
+    <% if (requestType === "IntentRequest") {%>intentName: <%= intentName %>,<% } %>
     handler: async (handlerInput) => {
         <% if (requestType === "SessionEndedRequest") {%>
             return handlerInput.responseBuilder.getResponse()
