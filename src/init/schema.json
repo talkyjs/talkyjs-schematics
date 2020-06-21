@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "SchematicsTalkyJSInit",
+    "title": "TalkyJS Project initialize Schema",
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "string",
+        "description": "The path to create the class.",
+        "x-prompt": "Where would you like to create for the project?",
+        "default": "./"
+      },
+      "ssml": {
+        "description": "ssml syntax.",
+        "type": "string",
+        "enum": [
+          "default",
+          "tsx"
+        ],
+        "default": "tsx",
+        "x-prompt": "Which type do you want to write SSML?"
+      },
+      "database": {
+        "description": "Skill DB type.",
+        "type": "string",
+        "enum": [
+          "dynamodb",
+          "s3",
+          "none"
+        ],
+        "default": "none",
+        "x-prompt": "Which DB do you want?"
+      },
+      "db-name": {
+        "description": "Skill database name.",
+        "type": "string",
+        "default": ""
+      },
+      "skill-id": {
+        "description": "Skill ID.",
+        "type": "string",
+        "default": ""
+      }
+    },
+    "required": ["path", "ssml", "database"]
+  }

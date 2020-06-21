@@ -3,7 +3,7 @@ import { ErrorHandler } from "ask-sdk-core";
 import { ErrorScript } from "./Error.speech"
 <% } %>
 
-export const <%= name %>>RequestHandler: ErrorHandler = {
+export const <%= name %>RequestHandler: ErrorHandler = {
     canHandle() {
         return true;
     },
