@@ -12,7 +12,7 @@ import {
   filter,
 } from '@angular-devkit/schematics';
 
-export function main(options: {
+export function createRequestHandler(options: {
   name: string;
   path: string;
   ssml: 'default' | 'tsx';
@@ -29,7 +29,7 @@ export function main(options: {
     const requestType = options["request-type"] || 'IntentRequest';
     const path = `${options.path}/${options.name}`;
 
-    const templateSource = apply(url('./files'), [
+    const templateSource = apply(url(__dirname + '/files'), [
       options.ssml === 'default'
         ? filter((path) => !path.endsWith('.tsx'))
         : noop(),
