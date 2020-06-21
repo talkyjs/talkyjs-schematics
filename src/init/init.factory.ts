@@ -21,9 +21,6 @@ import { createErrorHandler } from '../errorHandlers/handlers.factory';
  * - init npm
  * - install ask-sdk
  * - install ask-utils
- * - LaunchRequest
- * - HelpIntent
- * - SessionEndedRequest
  * - Stop / Cancel Intent
  * - test code
  */
@@ -71,6 +68,18 @@ export function main(options: InitSkillOptions): Rule {
             ssml: options.ssml,
             "request-type": "LaunchRequest",
             name: "LaunchRequest"
+        }),
+        createRequestHandler({
+            path: handlerPath,
+            ssml: options.ssml,
+            "request-type": "IntentRequest",
+            name: "AMAZON.HelpIntent"
+        }),
+        createRequestHandler({
+            path: handlerPath,
+            ssml: options.ssml,
+            "request-type": "SessionEndedRequest",
+            name: "SessionEndedRequest"
         }),
     ])
   };

@@ -5,8 +5,11 @@ import { <%= name %>Script } from './<%= name%>.speech'
 
 export const <%= name %>Handler: Router = {
     requestType: "<%= requestType %>",
-    <% if (requestType === "IntentRequest") {%>intentName: "<%= name %>",<% } %>
+    <% if (requestType === "IntentRequest") {%>intentName: "<%= intentName %>",<% } %>
     handler: async (handlerInput) => {
+        <% if (requestType === "SessionEndedRequest") {%>
+            return handlerInput.responseBuilder.getResponse()
+        <% } else { %>
         <% if (ssml === 'tsx') { %>
         const script = new <%= name %>Script(handlerInput)
         return script
@@ -14,6 +17,7 @@ export const <%= name %>Handler: Router = {
             .getResponse();
         <% } else { %>
         return handlerInput.responseBuilder.getResponse()
+        <% } %>
         <% } %>
     }
 }

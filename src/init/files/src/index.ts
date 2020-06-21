@@ -5,11 +5,15 @@ import { RequestHandlerFactory, Router } from '@ask-utils/router'
 <% if (database === "dynamodb") { %>import { DynamoDbPersistenceAdapter } from 'ask-sdk-dynamodb-persistence-adapter'<% } %>
 import { ErrorRequestHandler } from './ErrorHandler/Error.handler'
 import { LaunchRequestHandler } from './LaunchRequest/LaunchRequest.handler'
+import { HelpIntentHandler } from './HelpIntent/HelpIntent.handler'
+import { SessionEndedRequestHandler } from './SessionEndedRequest/SessionEndedRequest.handler'
 
 let skill: CustomSkillBuilder | undefined
 const handlerFactory = new RequestHandlerFactory()
 handlerFactory.addRoutes(
     LaunchRequestHandler,
+    HelpIntentHandler,
+    SessionEndedRequestHandler,
 )
 
 export const createSkill = (): CustomSkillBuilder => {
