@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "SchematicsTalkyJSErrorHandler",
+    "title": "TalkyJS Error Handler Options Schema",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The name of the intent name.",
+        "default": "Error"
+      },
+      "path": {
+        "type": "string",
+        "description": "The path to create the class.",
+        "default": "./"
+      },
+      "ssml": {
+        "description": "ssml syntax.",
+        "type": "string",
+        "enum": [
+          "default",
+          "tsx"
+        ],
+        "default": "tsx",
+        "x-prompt": "Which type do you want to write SSML?"
+      }
+    },
+    "required": ["ssml"]
+  }

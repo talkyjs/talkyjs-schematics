@@ -3,13 +3,23 @@
   "schematics": {
     "handler": {
       "description": "Request handler",
-      "factory": "./handlers/handlers.factory#main",
+      "factory": "./handlers/handlers.factory#createRequestHandler",
       "schema": "./handlers/schema.json"
+    },
+    "error-handler": {
+      "description": "Error handler",
+      "factory": "./errorHandlers/handlers.factory#createErrorHandler",
+      "schema": "./errorHandlers/schema.json"
     },
     "setup": {
       "description": "Setup talkyjs with ask-utils",
       "factory": "./setup/setup.factory#main",
       "schema": "./setup/schema.json"
+    },
+    "init": {
+      "description": "Setup talkyjs with ask-utils",
+      "factory": "./init/init.factory#main",
+      "schema": "./init/schema.json"
     }
   }
 }
