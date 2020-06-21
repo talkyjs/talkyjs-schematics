@@ -1,5 +1,5 @@
 import { Router } from "@ask-utils/router";
-<% if (ssml === 'tsx') { %>
+<% if (ssml === 'tsx' && requestType !== "SessionEndedRequest") { %>
 import { <%= name %>Script } from './<%= name%>.speech'
 <% } %>
 
@@ -16,7 +16,9 @@ export const <%= name %>Handler: Router = {
             .createResponseBuilder()
             .getResponse();
         <% } else { %>
-        return handlerInput.responseBuilder.getResponse()
+        return handlerInput.responseBuilder
+            .speech("<%= speech %>")<% if (reprompt) { %>.reprompt("<%= reprompt %>")<% } %>
+            .getResponse()
         <% } %>
         <% } %>
     }

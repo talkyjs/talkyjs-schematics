@@ -21,7 +21,6 @@ import { setup } from '../setup/setup.factory'
  * @TODO
  * - init npm
  * - install ask-sdk
- * - install ask-utils
  * - test code
  */
 export type InitSkillOptions = {
@@ -86,7 +85,9 @@ export function main(options: InitSkillOptions): Rule {
             path: handlerPath,
             ssml: options.ssml,
             "request-type": "IntentRequest",
-            name: ["AMAZON.StopIntent", "AMAZON.CancelIntent"]
+            name: ["AMAZON.StopIntent", "AMAZON.CancelIntent"],
+            speech: "Good-bye!",
+            reprompt: ""
         }),
     ])
   };

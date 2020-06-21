@@ -8,15 +8,17 @@ export class <%= name%>Script extends SpeechScriptJSX {
     speech() {
         return (
             <speak>
-                <p>Hello! It's a nice development</p>
+                <p><%= speech %></p>
             </speak>
         )
     }
+    <% if (reprompt) { %>
     reprompt() {
         return (
             <speak>
-                <p>How are you?</p>
+                <p><%= reprompt %></p>
             </speak>
         )
     }
+    <% } %>
 }

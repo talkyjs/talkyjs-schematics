@@ -19,6 +19,8 @@ export function createRequestHandler(options: {
   path: string;
   ssml: 'default' | 'tsx';
   ["request-type"]: Request["type"];
+  speech?: string;
+  reprompt?: string;
 }): Rule {
   return () => {
     if (!options.name) {
@@ -33,6 +35,8 @@ export function createRequestHandler(options: {
     }
     const requestType = options["request-type"] || 'IntentRequest';
     const path = stripAmazonPrefix(`${options.path}/${options.name}`);
+    const reprompt = options.reprompt === undefined ? 'How are you?' : options.reprompt
+    const speech = options.speech || `Hello! It's a nice development. ${reprompt}`
 
     const templateSource = apply(url(__dirname + '/files'), [
       options.ssml === 'default' || options["request-type"] === "SessionEndedRequest"
@@ -44,6 +48,8 @@ export function createRequestHandler(options: {
         name,
         intentName,
         requestType,
+        reprompt,
+        speech,
       }),
       move(path),
     ]);
