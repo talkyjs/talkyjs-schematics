@@ -1,7 +1,7 @@
 import { SkillFactory, TalkyJSSkillConfig } from '@talkyjs/core'
 import { LaunchRequestRouter } from './LaunchRequest/LaunchRequest.router'
 import { HelpIntentRouter } from './HelpIntent/HelpIntent.router'
-import { StopAndCancelIntentRouter } from './StopAndCancelIntent/StopAndCancelIntent.router'
+import { StopAndCancelAndNoIntentRouter } from './StopAndCancelAndNoIntent/StopAndCancelAndNoIntent.router'
 
 const config: TalkyJSSkillConfig = {
     stage: 'development',                   // [Optional] Skill Stage
@@ -24,6 +24,6 @@ export const handler = SkillFactory.launch(config)
 .addRequestRouters([
     LaunchRequestRouter,
     HelpIntentRouter,
-    StopAndCancelIntentRouter,
+    StopAndCancelAndNoIntentRouter,
 ])
 .createLambdaHandler()

@@ -55,8 +55,8 @@ export function main(options: InitSkillOptions): Rule {
   return () => {
     const handlerPath = join(options.path, 'src')
     return chain([
-        setup(options),
         initialzieSkill(options),
+        setup(options),
         createRequestRouter({
             path: handlerPath,
             ssml: options.ssml,
@@ -73,7 +73,7 @@ export function main(options: InitSkillOptions): Rule {
             path: handlerPath,
             ssml: options.ssml,
             "request-type": "IntentRequest",
-            name: ["AMAZON.StopIntent", "AMAZON.CancelIntent"],
+            name: ["AMAZON.StopIntent", "AMAZON.CancelIntent", "AMAZON.NoIntent"],
             speech: "Good-bye!",
             reprompt: ""
         }),
