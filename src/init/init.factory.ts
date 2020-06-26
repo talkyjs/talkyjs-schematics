@@ -29,7 +29,7 @@ export type InitSkillOptions = {
     database:  "dynamodb" | "s3" | "none",
     "skill-id"?: string;
     "db-name"?: string;
-
+    test?: 'true' | 'false';
 }
 
 export function initialzieSkill (options: InitSkillOptions): Rule {
@@ -55,6 +55,7 @@ export function initialzieSkill (options: InitSkillOptions): Rule {
 export function main(options: InitSkillOptions): Rule {
   return () => {
     const handlerPath = join(options.path, 'src')
+    const test = options.test !== 'false'
     return chain([
         initialzieSkill(options),
         setup(options),
@@ -62,13 +63,15 @@ export function main(options: InitSkillOptions): Rule {
             path: handlerPath,
             ssml: options.ssml,
             "request-type": "LaunchRequest",
-            name: "LaunchRequest"
+            name: "LaunchRequest",
+            test,
         }),
         createRequestRouter({
             path: handlerPath,
             ssml: options.ssml,
             "request-type": "IntentRequest",
-            name: "AMAZON.HelpIntent"
+            name: "AMAZON.HelpIntent",
+            test,
         }),
         createRequestRouter({
             path: handlerPath,
@@ -76,7 +79,8 @@ export function main(options: InitSkillOptions): Rule {
             "request-type": "IntentRequest",
             name: ["AMAZON.StopIntent", "AMAZON.CancelIntent", "AMAZON.NoIntent"],
             speech: "Good-bye!",
-            reprompt: ""
+            reprompt: "",
+            test,
         }),
     ])
   };
