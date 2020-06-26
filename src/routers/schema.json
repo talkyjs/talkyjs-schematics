@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "SchematicsTalkyJSRouter",
+    "title": "TalkyJS Router Options Schema",
+    "type": "object",
+    "properties": {
+      "request-type": {
+          "default": "IntentRequest",
+          "type": "string",
+          "description": "Request type from Alexa",
+          "x-prompt": "What type do you handle the request?"
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the intent name.",
+        "x-prompt": "What name would you like to use for the class?"
+      },
+      "path": {
+        "type": "string",
+        "description": "The path to create the class.",
+        "default": "./"
+      },
+      "ssml": {
+        "description": "ssml syntax.",
+        "type": "string",
+        "enum": [
+          "default",
+          "tsx"
+        ],
+        "default": "tsx",
+        "x-prompt": "Which type do you want to write SSML?"
+      }
+    },
+    "required": ["request-type",  "ssml"]
+  }

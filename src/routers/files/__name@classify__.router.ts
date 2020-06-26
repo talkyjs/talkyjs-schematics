@@ -1,18 +1,12 @@
-import { RequestHandler } from 'ask-sdk-core';
+import { Router } from "@ask-utils/router";
 <% if (ssml === 'tsx' && requestType !== "SessionEndedRequest") { %>
 import { <%= classify(name) %>Script } from './<%= classify(name) %>.speech'
 <% } %>
 
-export const <%= classify(name) %>Handler:  RequestHandler = {
-    canHandle(handlerInput) {
-        <% if (requestType === "IntentRequest") {%>
-        if (handlerInput.requestEnvelope.request.type !== 'IntentRequest') return true
-        return handlerInput.requestEnvelope.request.intent.name === <%= intentName %>
-        <% } else { %>
-        return handlerInput.requestEnvelope.request.type === "<%= requestType %>"
-        <% } %>
-    },
-    async handle(handlerInput) {
+export const <%= classify(name) %>Router: Router = {
+    requestType: "<%= requestType %>",
+    <% if (requestType === "IntentRequest") {%>intentName: <%= intentName %>,<% } %>
+    handler: async (handlerInput) => {
         <% if (requestType === "SessionEndedRequest") {%>
             return handlerInput.responseBuilder.getResponse()
         <% } else { %>
@@ -30,4 +24,4 @@ export const <%= classify(name) %>Handler:  RequestHandler = {
     }
 }
 
-export default <%= classify(name) %>Handler
+export default <%= classify(name) %>Router

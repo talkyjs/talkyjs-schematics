@@ -1,6 +1,11 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
+    "router": {
+      "description": "RequestRouter",
+      "factory": "./routers/router.factory#createRequestRouter",
+      "schema": "./routers/schema.json"
+    },
     "handler": {
       "description": "Request handler",
       "factory": "./handlers/handlers.factory#createRequestHandler",
