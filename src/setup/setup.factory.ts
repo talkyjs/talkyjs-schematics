@@ -8,31 +8,45 @@ import {
 } from '@angular-devkit/schematics';
 import { TsConfigJson } from 'type-fest';
 import { addNodePackageDependenciesTask } from '../share/packages.factory';
+import { join } from 'path';
 
-export function setup({ ssml }: { ssml: 'default' | 'tsx' }): Rule {
+export function setup({
+  ssml,
+  path,
+}: {
+  ssml: 'default' | 'tsx',
+  path: string,
+}): Rule {
   return () => {
     return chain([
-      updateTsConfig(ssml),
+      updateTsConfig(path, ssml),
       addNodePackageDependenciesTask('dependencies', {
         '@talkyjs/core': '0.x',
         '@ask-utils/router': '3.x',
-      }),
+      }, path),
       ssml === 'default'
         ? noop()
         : addNodePackageDependenciesTask('dependencies', {
             '@ask-utils/speech-script': '3.x',
-          }),
+          }, path),
       addNodePackageDependenciesTask('devDependencies', {
         '@ask-utils/test': '3.x',
-      }),
+      }, path),
     ]);
   };
 }
 
-const updateTsConfig = (ssml: 'default' | 'tsx'): Rule => {
+/**
+ * @TODO
+ * - Create package.json if no file available
+ * - Create tsconfig.json if no file available
+ */
+
+const updateTsConfig = (path: string, ssml: 'default' | 'tsx'): Rule => {
   if (ssml !== 'tsx') return noop();
+  const tsconfigPath = join(path, 'tsconfig.json')
   return (tree: Tree, _context: SchematicContext) => {
-    const buf = tree.read('tsconfig.json');
+    const buf = tree.read(tsconfigPath);
     if (!buf) {
       throw new SchematicsException('cannot find package.json');
     }
@@ -45,7 +59,7 @@ const updateTsConfig = (ssml: 'default' | 'tsx'): Rule => {
       };
     }
 
-    tree.overwrite('tsconfig.json', JSON.stringify(content, null, 2));
+    tree.overwrite(tsconfigPath, JSON.stringify(content, null, 2));
 
     return tree;
   };
