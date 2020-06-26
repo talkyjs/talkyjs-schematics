@@ -20,7 +20,7 @@
     },
     "directories": {
       "lib": "src",
-      "test": "__tests__"
+      "test": "tests"
     },
     "jest": {
       "moduleFileExtensions": [
@@ -30,7 +30,7 @@
         "ts"
       ],
       "rootDir": "src",
-      "testRegex": ".spec.ts$",
+      "testRegex": ".spec.(ts|tsx)$",
       "transform": {
         "^.+\\.(ts|tsx)$": "ts-jest"
       },

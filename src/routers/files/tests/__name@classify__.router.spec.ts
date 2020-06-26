@@ -15,10 +15,10 @@ describe('<%= classify(name) %>Router', () => {
     });
     it('should return false when given a not IntentRequest', async () => {
       const handlerInput = new HandlerInputCreator().createIntentRequest({
-        name: "<%= intentName %>",
+        name: <%= intentName %>,
         confirmationStatus: 'NONE'
       });
-      await expect(handler.canHandle(handlerInput)).resolves.toEqual(<%= canHandleTestResult %>);
+      await expect(handler.canHandle(handlerInput)).resolves.toMatchSnapshot();
     });
   });
   describe('handle', () => {
