@@ -12,9 +12,8 @@ import {
   filter,
   chain,
 } from '@angular-devkit/schematics';
-import { createRequestHandler } from '../handlers/handlers.factory';
+import { createRequestRouter } from '../routers/router.factory';
 import { join } from 'path';
-import { createErrorHandler } from '../errorHandlers/handlers.factory';
 import { setup } from '../setup/setup.factory'
 
 /**
@@ -58,30 +57,19 @@ export function main(options: InitSkillOptions): Rule {
     return chain([
         setup(options),
         initialzieSkill(options),
-        createErrorHandler({
-            path: handlerPath,
-            ssml: options.ssml,
-            name: "Error"
-        }),
-        createRequestHandler({
+        createRequestRouter({
             path: handlerPath,
             ssml: options.ssml,
             "request-type": "LaunchRequest",
             name: "LaunchRequest"
         }),
-        createRequestHandler({
+        createRequestRouter({
             path: handlerPath,
             ssml: options.ssml,
             "request-type": "IntentRequest",
             name: "AMAZON.HelpIntent"
         }),
-        createRequestHandler({
-            path: handlerPath,
-            ssml: options.ssml,
-            "request-type": "SessionEndedRequest",
-            name: "SessionEndedRequest"
-        }),
-        createRequestHandler({
+        createRequestRouter({
             path: handlerPath,
             ssml: options.ssml,
             "request-type": "IntentRequest",

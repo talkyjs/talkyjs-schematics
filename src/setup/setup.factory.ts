@@ -14,6 +14,7 @@ export function setup({ ssml }: { ssml: 'default' | 'tsx' }): Rule {
     return chain([
       updateTsConfig(ssml),
       addNodePackageDependenciesTask('dependencies', {
+        '@talkyjs/core': '0.x',
         '@ask-utils/router': '3.x',
       }),
       ssml === 'default'
