@@ -16,11 +16,6 @@
       "factory": "./errorHandlers/handlers.factory#createErrorHandler",
       "schema": "./errorHandlers/schema.json"
     },
-    "setup": {
-      "description": "Setup talkyjs with ask-utils",
-      "factory": "./setup/setup.factory#setup",
-      "schema": "./setup/schema.json"
-    },
     "init": {
       "description": "Setup talkyjs with ask-utils",
       "factory": "./init/init.factory#main",
