@@ -27,6 +27,7 @@ export type InitSkillOptions = {
   path: string;
   ssml: 'default' | 'tsx';
   database: 'dynamodb' | 's3' | 'none';
+  'build-dir'?: string;
   'skill-id'?: string;
   'db-name'?: string;
   test?: 'true' | 'false';
@@ -37,6 +38,7 @@ export function initialzieSkill(options: InitSkillOptions): Rule {
   const skillId = options['skill-id'] || '';
   const dbName = options['db-name'] || 'PUT_YOUR_DB_NAME';
   const path = options.path || './';
+  const buildDir = options["build-dir"] || './dist';
   const templateSource = apply(url('./files'), [
     options.ssml === 'default'
       ? filter((path) => !path.endsWith('.tsx'))
@@ -45,6 +47,7 @@ export function initialzieSkill(options: InitSkillOptions): Rule {
     template({
       ...strings,
       ...options,
+      buildDir,
       skillId,
       dbName,
     }),

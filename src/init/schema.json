@@ -40,6 +40,11 @@
         "description": "Skill ID.",
         "type": "string",
         "default": ""
+      },
+      "build-dir": {
+        "description": "Build file path",
+        "default": "./dist",
+        "type": "string"
       }
     },
     "required": ["path", "ssml", "database"]

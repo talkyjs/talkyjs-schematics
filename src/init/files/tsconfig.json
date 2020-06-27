@@ -5,7 +5,7 @@
       "noImplicitAny": true,
       "noImplicitReturns": true,
       "noFallthroughCasesInSwitch": true,
-      "outDir": "./built",
+      "outDir": "<%= buildDir %>",
       <% if (ssml === 'tsx') { %>"jsx": "react",<% } %>
       "allowJs": false
     },

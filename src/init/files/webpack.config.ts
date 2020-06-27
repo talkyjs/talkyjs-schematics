@@ -1,7 +1,7 @@
 import * as Webpack from 'webpack';
 import {resolve} from 'path';
 /** ビルド結果出力先 */
-const BUILT_PATH = resolve(__dirname, './build');
+const BUILT_PATH = resolve(__dirname, '<%= buildDir %>');
 /** ビルド種別 */
 const BUILD_VARIANT = process.env.NODE_ENV;
 
