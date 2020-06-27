@@ -11,19 +11,11 @@ import {
   noop,
   filter,
 } from '@angular-devkit/schematics';
-import { Request } from 'ask-sdk-model';
 import { stripAmazonPrefix } from '../share/utils/intentName.utils';
 import { ignoreTestFile } from '../share/files.utils';
+import { RequestClassOptions } from '../share/RequestClass.utils';
 
-export function createRequestHandler(options: {
-  name: string | string[];
-  path: string;
-  ssml: 'default' | 'tsx';
-  ['request-type']: Request['type'];
-  speech?: string;
-  reprompt?: string;
-  test?: 'false' | 'true';
-}): Rule {
+export function createRequestHandler(options: RequestClassOptions): Rule {
   return () => {
     if (!options.name) {
       throw new SchematicsException('Option (name) is required.');

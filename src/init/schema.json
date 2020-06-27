@@ -45,6 +45,14 @@
         "description": "Build file path",
         "default": "./dist",
         "type": "string"
+      },
+      "handler-type": {
+        "enum": [
+          "router",
+          "handler"
+        ],
+        "default": "router",
+        "description": "RequestHandler type"
       }
     },
     "required": ["path", "ssml", "database"]

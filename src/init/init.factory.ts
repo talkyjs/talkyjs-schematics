@@ -13,9 +13,11 @@ import {
   chain,
 } from '@angular-devkit/schematics';
 import { createRequestRouter } from '../routers/router.factory';
+import { createRequestHandler } from '../handlers/handlers.factory';
 import { join } from 'path';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { ignoreTestFile } from '../share/files.utils';
+import { RequestClassOptions } from '../share/RequestClass.utils';
 
 /**
  * @TODO
@@ -31,6 +33,7 @@ export type InitSkillOptions = {
   'skill-id'?: string;
   'db-name'?: string;
   test?: 'true' | 'false';
+  'handler-type'?: 'router' | 'handler'
 };
 
 export function initialzieSkill(options: InitSkillOptions): Rule {
@@ -39,6 +42,7 @@ export function initialzieSkill(options: InitSkillOptions): Rule {
   const dbName = options['db-name'] || 'PUT_YOUR_DB_NAME';
   const path = options.path || './';
   const buildDir = options["build-dir"] || './dist';
+  const controllerFilesuffix = options["handler-type"]
   const templateSource = apply(url('./files'), [
     options.ssml === 'default'
       ? filter((path) => !path.endsWith('.tsx'))
@@ -50,6 +54,7 @@ export function initialzieSkill(options: InitSkillOptions): Rule {
       buildDir,
       skillId,
       dbName,
+      controllerFilesuffix,
     }),
     move(path),
   ]);
@@ -60,27 +65,28 @@ export function main(options: InitSkillOptions): Rule {
   return () => {
     const handlerPath = join(options.path, 'src');
     const test = options.test;
+    options["handler-type"] = options["handler-type"] || 'router'
     return chain([
       initialzieSkill(options),
       (tree, _context) => {
         _context.addTask(new NodePackageInstallTask(options.path));
         return tree;
       },
-      createRequestRouter({
+      createRequestClass({
         path: handlerPath,
         ssml: options.ssml,
         'request-type': 'LaunchRequest',
         name: 'LaunchRequest',
         test,
-      }),
-      createRequestRouter({
+      }, options["handler-type"]),
+      createRequestClass({
         path: handlerPath,
         ssml: options.ssml,
         'request-type': 'IntentRequest',
         name: 'AMAZON.HelpIntent',
         test,
-      }),
-      createRequestRouter({
+      }, options["handler-type"]),
+      createRequestClass({
         path: handlerPath,
         ssml: options.ssml,
         'request-type': 'IntentRequest',
@@ -88,7 +94,12 @@ export function main(options: InitSkillOptions): Rule {
         speech: 'Good-bye!',
         reprompt: '',
         test,
-      }),
+      }, options["handler-type"]),
     ]);
   };
+}
+
+export const createRequestClass = (options: RequestClassOptions, type: 'handler' | 'router'): Rule => {
+  if (type === 'handler') return createRequestHandler(options)
+  return createRequestRouter(options)
 }

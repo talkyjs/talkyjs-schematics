@@ -1,8 +1,8 @@
 import { SkillFactory, TalkyJSSkillConfig, SkillHandler } from '@talkyjs/core'
 import { CustomSkillBuilder } from 'ask-sdk-core'
-import { LaunchRequestRouter } from './LaunchRequest/LaunchRequest.router'
-import { HelpIntentRouter } from './HelpIntent/HelpIntent.router'
-import { StopAndCancelAndNoIntentRouter } from './StopAndCancelAndNoIntent/StopAndCancelAndNoIntent.router'
+import { LaunchRequest<%= classify(controllerFilesuffix) %> } from './LaunchRequest/LaunchRequest.<%= controllerFilesuffix %>'
+import { HelpIntent<%= classify(controllerFilesuffix) %> } from './HelpIntent/HelpIntent.<%= controllerFilesuffix %>'
+import { StopAndCancelAndNoIntent<%= classify(controllerFilesuffix) %> } from './StopAndCancelAndNoIntent/StopAndCancelAndNoIntent.<%= controllerFilesuffix %>'
 
 const config: TalkyJSSkillConfig = {
     stage: 'development',                   // [Optional] Skill Stage
@@ -25,11 +25,11 @@ const config: TalkyJSSkillConfig = {
  * Skill Factory (Added preset handler)
  */
 export const skillFactory = SkillFactory.launch(config)
-.addRequestRouters([
-    LaunchRequestRouter,
-    HelpIntentRouter,
-    StopAndCancelAndNoIntentRouter,
-])
+<% if(controllerFilesuffix === 'router') { %>.addRequestRouters([<% } else { %>.addRequestHandlers(<% } %>
+    LaunchRequest<%= classify(controllerFilesuffix) %>,
+    HelpIntent<%= classify(controllerFilesuffix) %>,
+    StopAndCancelAndNoIntent<%= classify(controllerFilesuffix) %>,
+<% if(controllerFilesuffix === 'router') { %>])<% } else { %>)<% } %>
 
 /**
  * ask sdk skillBuilder
