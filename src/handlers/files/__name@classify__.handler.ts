@@ -27,7 +27,7 @@ export const <%= classify(name) %>Handler:  RequestHandler = {
             .getResponse();
         <% } else { %>
         return handlerInput.responseBuilder
-            .speech("<%= speech %>")<% if (reprompt) { %>.reprompt("<%= reprompt %>")<% } %>
+            .speak("<%= speech %>")<% if (reprompt) { %>.reprompt("<%= reprompt %>")<% } %>
             .getResponse()
         <% } %>
         <% } %>
