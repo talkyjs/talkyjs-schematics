@@ -4,9 +4,9 @@ import { <%= classify(name) %>Script } from './<%= classify(name) %>.speech'
 <% } %>
 
 export const <%= classify(name) %>Handler:  RequestHandler = {
-    canHandle(handlerInput) {
+    async canHandle(handlerInput) {
         <% if (requestType === "IntentRequest") {%>
-        if (handlerInput.requestEnvelope.request.type !== 'IntentRequest') return true
+        if (handlerInput.requestEnvelope.request.type !== 'IntentRequest') return false
         return handlerInput.requestEnvelope.request.intent.name === <%= intentName %>
         <% } else { %>
         return handlerInput.requestEnvelope.request.type === "<%= requestType %>"

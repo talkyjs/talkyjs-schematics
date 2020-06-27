@@ -21,7 +21,7 @@ export function createRequestRouter(options: {
   ["request-type"]: Request["type"];
   speech?: string;
   reprompt?: string;
-  test?: boolean
+  test?: 'false' | 'true';
 }): Rule {
   return () => {
     if (!options.name) {
@@ -44,7 +44,7 @@ export function createRequestRouter(options: {
       options.ssml === 'default' || options["request-type"] === "SessionEndedRequest"
         ? filter((path) => !path.endsWith('.tsx'))
         : noop(),
-      options.test !== false ? noop() : filter((path) => {
+      options.test !== "false" ? noop() : filter((path) => {
         return !path.startsWith('/tests')
       }),
       template({

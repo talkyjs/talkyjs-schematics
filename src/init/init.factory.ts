@@ -54,7 +54,7 @@ export function initialzieSkill (options: InitSkillOptions): Rule {
 export function main(options: InitSkillOptions): Rule {
   return () => {
     const handlerPath = join(options.path, 'src')
-    const test = options.test !== 'false'
+    const test = options.test
     return chain([
         initialzieSkill(options),
         (tree, _context) => {

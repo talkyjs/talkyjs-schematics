@@ -21,6 +21,7 @@ export function createRequestHandler(options: {
   ["request-type"]: Request["type"];
   speech?: string;
   reprompt?: string;
+  test?: 'false' | 'true';
 }): Rule {
   return () => {
     if (!options.name) {
@@ -37,17 +38,22 @@ export function createRequestHandler(options: {
     const path = stripAmazonPrefix(`${options.path}/${options.name}`);
     const reprompt = options.reprompt === undefined ? 'How are you?' : options.reprompt
     const speech = options.speech || `Hello! It's a nice development. ${reprompt}`
+    const canHandleTestResult = requestType === "LaunchRequest"
 
     const templateSource = apply(url(__dirname + '/files'), [
       options.ssml === 'default' || options["request-type"] === "SessionEndedRequest"
         ? filter((path) => !path.endsWith('.tsx'))
         : noop(),
+      options.test !== "false" ? noop() : filter((path) => {
+          return !path.startsWith('/tests')
+        }),
       template({
         ...strings,
         ...options,
         name,
-        intentName,
+        intentName: intentName || 'DummyIntent',
         requestType,
+        canHandleTestResult,
         reprompt,
         speech,
       }),
