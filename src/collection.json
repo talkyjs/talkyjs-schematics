@@ -20,6 +20,11 @@
       "description": "Setup talkyjs with ask-utils",
       "factory": "./init/init.factory#main",
       "schema": "./init/schema.json"
+    },
+    "service": {
+      "description": "Setup talkyjs service",
+      "factory": "./services/service.factory#main",
+      "schema": "./services/schema.json"
     }
   }
 }

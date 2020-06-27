@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "SchematicsTalkyJSService",
+    "title": "TalkyJS Router Options Schema",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The name of the intent name.",
+        "x-prompt": "What name would you like to use for the class?"
+      },
+      "path": {
+        "type": "string",
+        "description": "The path to create the class.",
+        "default": "./"
+      }
+    }
+  }

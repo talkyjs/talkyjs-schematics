@@ -15,6 +15,23 @@ schematics --help
 
 `npm run test` will run the unit tests, using Jasmine as a runner and test framework.
 
+### Commands
+
+
+```bash
+# Setup Skill handler
+% yarn schematics .:init --path=./tmp --dry-run=false --ssml=tsx --database=none
+
+# Add a ask-sdk request handler
+% yarn schematics .:handler --path=./tmp --dry-run=false --ssml=tsx
+
+# Add ask-utils router (Dry run)
+% yarn schematics .:router --path=./tmp/src
+
+# Add service class
+% yarn schematics .:service --path=./tmp/src --name=test --dry-run=false --test=true
+```
+
 ### Publishing
 
 To publish, simply do:
@@ -25,4 +42,13 @@ npm publish
 ```
 
 That's it!
- 
+
+ ## TODO
+ - [ ] Test Code
+ - [ ] Auto import generated files
+ - [ ] decorator support
+ - [ ] Serverless Framework yaml generation
+ - [ ] Update ASK CLI build hook (v1)
+ - [ ] Update ASK CLI build hook (v2)
+ - [ ] Create IAM policy example
+ - [ ] Update CloudFormation template for ASK CLI (v2 cfn-deployer)
