@@ -13,6 +13,7 @@ import {
 } from '@angular-devkit/schematics';
 import { Request } from 'ask-sdk-model';
 import { stripAmazonPrefix } from '../share/utils/intentName.utils';
+import { ignoreTestFile } from '../share/files.utils';
 
 export function createRequestRouter(options: {
   name: string | string[];
@@ -44,9 +45,7 @@ export function createRequestRouter(options: {
       options.ssml === 'default' || options["request-type"] === "SessionEndedRequest"
         ? filter((path) => !path.endsWith('.tsx'))
         : noop(),
-      options.test !== "false" ? noop() : filter((path) => {
-        return !path.startsWith('/tests')
-      }),
+     ignoreTestFile(options.test),
       template({
         ...strings,
         ...options,

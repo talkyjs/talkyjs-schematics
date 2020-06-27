@@ -15,6 +15,7 @@ import {
 import { createRequestRouter } from '../routers/router.factory';
 import { join } from 'path';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
+import { ignoreTestFile } from '../share/files.utils';
 
 /**
  * @TODO
@@ -40,6 +41,7 @@ export function initialzieSkill (options: InitSkillOptions): Rule {
       options.ssml === 'default'
         ? filter((path) => !path.endsWith('.tsx'))
         : noop(),
+      ignoreTestFile(options.test),
       template({
         ...strings,
         ...options,
