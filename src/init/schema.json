@@ -46,7 +46,7 @@
         "default": "./dist",
         "type": "string"
       },
-      "handler-type": {
+      "controller-type": {
         "enum": [
           "router",
           "handler"
