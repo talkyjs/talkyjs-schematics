@@ -13,10 +13,10 @@ export type NodePackages = {
 export const addNodePackageDependenciesTask = (
   type: 'dependencies' | 'devDependencies',
   packages: NodePackages,
-  path: string = './'
+  path = './'
 ): Rule => {
   const task = (_options: any): Rule => {
-    const packageJsonPath = join(path, 'package.json')
+    const packageJsonPath = join(path, 'package.json');
     return (tree: Tree, _context: SchematicContext) => {
       const buf = tree.read(packageJsonPath);
       if (!buf) {

@@ -19,7 +19,7 @@ export function createRequestRouter(options: {
   name: string | string[];
   path: string;
   ssml: 'default' | 'tsx';
-  ["request-type"]: Request["type"];
+  ['request-type']: Request['type'];
   speech?: string;
   reprompt?: string;
   test?: 'false' | 'true';
@@ -28,24 +28,31 @@ export function createRequestRouter(options: {
     if (!options.name) {
       throw new SchematicsException('Option (name) is required.');
     }
-    const intentName = Array.isArray(options.name) ? `[${options.name.map(name => `"${name}"`).join(',')}]`: `"${options.name}"`
-    const targetName = Array.isArray(options.name) ? options.name.join('And').replace(/IntentAnd/g, 'And') : options.name
-    options.name = strings.classify(targetName)
-    const name = stripAmazonPrefix(targetName)
+    const intentName = Array.isArray(options.name)
+      ? `[${options.name.map((name) => `"${name}"`).join(',')}]`
+      : `"${options.name}"`;
+    const targetName = Array.isArray(options.name)
+      ? options.name.join('And').replace(/IntentAnd/g, 'And')
+      : options.name;
+    options.name = strings.classify(targetName);
+    const name = stripAmazonPrefix(targetName);
     if (!options.path) {
       throw new SchematicsException('Option (path) is required.');
     }
-    const requestType = options["request-type"] || 'IntentRequest';
+    const requestType = options['request-type'] || 'IntentRequest';
     const path = stripAmazonPrefix(`${options.path}/${options.name}`);
-    const reprompt = options.reprompt === undefined ? 'How are you?' : options.reprompt
-    const speech = options.speech || `Hello! It's a nice development. ${reprompt}`
-    const canHandleTestResult = requestType === "LaunchRequest"
+    const reprompt =
+      options.reprompt === undefined ? 'How are you?' : options.reprompt;
+    const speech =
+      options.speech || `Hello! It's a nice development. ${reprompt}`;
+    const canHandleTestResult = requestType === 'LaunchRequest';
 
     const templateSource = apply(url(__dirname + '/files'), [
-      options.ssml === 'default' || options["request-type"] === "SessionEndedRequest"
+      options.ssml === 'default' ||
+      options['request-type'] === 'SessionEndedRequest'
         ? filter((path) => !path.endsWith('.tsx'))
         : noop(),
-     ignoreTestFile(options.test),
+      ignoreTestFile(options.test),
       template({
         ...strings,
         ...options,

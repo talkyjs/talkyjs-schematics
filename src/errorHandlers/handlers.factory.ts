@@ -18,8 +18,8 @@ export function createErrorHandler(options: {
   ssml: 'default' | 'tsx';
 }): Rule {
   return () => {
-    options.name = options.name || "error"
-    options.name = strings.classify(options.name)
+    options.name = options.name || 'error';
+    options.name = strings.classify(options.name);
     if (!options.path) {
       throw new SchematicsException('Option (path) is required.');
     }

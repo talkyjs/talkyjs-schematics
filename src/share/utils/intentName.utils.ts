@@ -1,9 +1,9 @@
 /**
  * Remove intent name prefix like "AMAZON.HelpIntent"
- * @param intentName 
+ * @param intentName
  * @example
  * stripAmazonPrefix("AMAZON.HelpIntent") => "HelpIntent"
  */
 export const stripAmazonPrefix = (intentName: string): string => {
-    return intentName.replace(/AMAZON\./g, '')
-}
+  return intentName.replace(/AMAZON\./g, '');
+};
