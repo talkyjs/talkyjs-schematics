@@ -7,7 +7,11 @@ export const <%= classify(name) %>Handler:  RequestHandler = {
     async canHandle(handlerInput) {
         <% if (requestType === "IntentRequest") {%>
         if (handlerInput.requestEnvelope.request.type !== 'IntentRequest') return false
+        <% if (/^\[/.test(intentName)) { %>
+        return <%= intentName %>.includes(handlerInput.requestEnvelope.request.intent.name)
+        <% } else { %>
         return handlerInput.requestEnvelope.request.intent.name === <%= intentName %>
+        <% } %>
         <% } else { %>
         return handlerInput.requestEnvelope.request.type === "<%= requestType %>"
         <% } %>
