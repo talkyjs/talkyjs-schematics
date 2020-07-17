@@ -17,7 +17,7 @@ export const <%= classify(name) %>Router: Router = {
             .getResponse();
         <% } else { %>
         return handlerInput.responseBuilder
-            .speech("<%= speech %>")<% if (reprompt) { %>.reprompt("<%= reprompt %>")<% } %>
+            .speak("<%= speech %>")<% if (reprompt) { %>.reprompt("<%= reprompt %>")<% } %>
             .getResponse()
         <% } %>
         <% } %>
