@@ -1,5 +1,5 @@
 import { HandlerInputCreator } from '@ask-utils/test';
-import { RequestHandlerFactory } from '@ask-utils/router';
+import { RequestHandlerFactory } from '@talkyjs/core';
 import { RequestHandler } from 'ask-sdk-core';
 import { <%= classify(name) %>Router } from '../<%= classify(name) %>.router'
 

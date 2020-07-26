@@ -1,4 +1,4 @@
-import { Router } from "@ask-utils/router";
+import { Router } from "@talkyjs/core";
 <% if (ssml === 'tsx' && requestType !== "SessionEndedRequest") { %>
 import { <%= classify(name) %>Script } from './<%= classify(name) %>.speech'
 <% } %>
