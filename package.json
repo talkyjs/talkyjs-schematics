@@ -8,7 +8,8 @@
     "test:watch": "jest --watch",
     "lint": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint 'src/**/*.ts' --fix",
-    "schematics": "npm run build && schematics"
+    "schematics": "npm run build && schematics",
+    "prepare": "npm run build"
   },
   "keywords": [
     "schematics"
