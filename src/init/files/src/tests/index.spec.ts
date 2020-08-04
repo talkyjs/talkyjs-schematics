@@ -12,15 +12,13 @@ describe('Skill handler', () => {
   });
   it('should return false when given a not LaunchRequest', async () => {
     const handlerInput = new HandlerInputCreator().createLaunchRequest();
-    await expect(
-      handler(handlerInput.requestEnvelope)
-    ).resolves.toMatchSnapshot();
+    const response = await handler(handlerInput.requestEnvelope)
+    expect(response.response).toMatchSnapshot();
   });
   it('should return false when given a not SessionEndedRequest', async () => {
     const handlerInput = new HandlerInputCreator().createSessionEndedRequest();
-    await expect(
-      handler(handlerInput.requestEnvelope)
-    ).resolves.toMatchSnapshot();
+    const response = await handler(handlerInput.requestEnvelope)
+    expect(response.response).toMatchSnapshot();
   });
   it.each([
     'AMAZON.StopIntent',
@@ -32,8 +30,7 @@ describe('Skill handler', () => {
       name: type,
       confirmationStatus: 'NONE',
     });
-    await expect(
-      handler(handlerInput.requestEnvelope)
-    ).resolves.toMatchSnapshot();
+    const response = await handler(handlerInput.requestEnvelope)
+    expect(response.response).toMatchSnapshot();
   });
 });
