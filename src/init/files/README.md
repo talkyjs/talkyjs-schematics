@@ -2,6 +2,29 @@
 
 ## Development
 
+### Add new RequestHandler
+
+#### As a ASK-SDK request handler
+
+```bash
+$ yarn talky:g:handler NewHandler
+
+$ yarn talky:g:handler NewHandlerWithJSX --ssml=tsx
+
+$ yarn talky:g:handler NewHandlerNoTest --no-test
+```
+
+#### As a Tallyjs Router
+
+
+```bash
+$ yarn talky:g:router NewRoute
+
+$ yarn talky:g:router NewRouteWithJSX --ssml=tsx
+
+$ yarn talky:g:router NewRouteNoTest --no-test
+```
+
 ### Unit test
 
 ```bash

@@ -4,6 +4,11 @@
     "description": "alexa utility for quickly building skills",
     "main": "<% buildDir %>/index.js",
     "scripts": {
+      "talky": "talky",
+      "talky:g": "talky g",
+      "talky:g:handler": "talky g handler",
+      "talky:g:router": "talky g router",
+      "talky:g:service": "talky g service",
       "build": "webpack",
       "test": "jest",
       "test:watch": "jest --watch",
@@ -48,6 +53,7 @@
     },
     "devDependencies": {
       "@ask-utils/test": "3.x",
+      "@talkyjs/cli": "1.x",
       "@types/jest": "^25.2.1",
       "@types/node": "^13.13.5",
       "@types/react": "^17.x",
