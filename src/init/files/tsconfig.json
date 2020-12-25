@@ -6,6 +6,7 @@
       "noImplicitReturns": true,
       "noFallthroughCasesInSwitch": true,
       "outDir": "<%= buildDir %>",
+      "esModuleInterop": true,
       <% if (ssml === 'tsx') { %>"jsx": "react",<% } %>
       "allowJs": false
     },
